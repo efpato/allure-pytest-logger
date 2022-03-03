@@ -1,0 +1,27 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.9'
+      - name: Install poetry
+        run: pip install poetry
+      - name: Configure poetry
+        run: |
+          poetry config experimental.new-installer true
+          poetry config virtualenvs.create false
+      - name: Install dependencies
+        run: poetry install --no-interaction
+      - name: Build and publish to PyPI
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
+        run: poetry publish --build

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "allure-pytest-logger"
-version = "1.0.0"
+version = "1.0.1"
 description = "PyTest Allure Logging Plugin"
 license = "MIT"
 authors = ["Sergey Demenok <sergey.demenok@gmail.com>"]

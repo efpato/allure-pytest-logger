@@ -45,6 +45,7 @@ class AllureLoggerPlugin:
 
     def cleanup(self) -> None:
         self.stream.truncate(0)
+        self.stream.seek(0)
         self.has_failure = False
 
     @pytest.hookimpl(hookwrapper=True)
